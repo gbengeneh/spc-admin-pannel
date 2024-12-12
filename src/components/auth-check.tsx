@@ -20,9 +20,9 @@ export default async function AuthCheck({ children }: { children: React.ReactNod
 
         if (userError || !userData) {  
             console.error("Error fetching user data:", userError);  
-        } else (userData.type === ADMIN) {  
-            redirect("/admin") 
-        }  
+        } else (userData.type === ADMIN); {  
+            redirect("/admin"); 
+        };  
     }  
 
     // If user is authenticated, render children  

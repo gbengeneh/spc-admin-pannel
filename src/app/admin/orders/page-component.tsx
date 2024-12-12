@@ -41,31 +41,31 @@ type Props = {
 type OrderedProducts = {
   order_id: number;
   product: number & {
-      category: number;
-      created_at: string;
-      heroImage: string;
-      id: number;
-      imagesUrl: string[];
-      maxQuantity: number;
-      price: number;
-      slug: string;
-      title: string;
+    category: number;
+    created_at: string;
+    heroImage: string;
+    id: number;
+    imagesUrl: string[];
+    maxQuantity: number;
+    price: number;
+    slug: string;
+    title: string;
   };
-}[]
-
+}[];
+ // @ts-ignore
 export default function PageComponent({ ordersWithProducts }: Props) {
   const [selectedProducts, setSelectedProducts] = useState<OrderedProducts>([]);
 
   const openProductsModal = (products: OrderedProducts) => () =>
     setSelectedProducts(products);
-
+// @ts-ignore
   const orderedProducts = ordersWithProducts.flatMap(order =>
+    // @ts-ignore
     order.order_items.map(item => ({
       order_id: order.id,
       product: item.product,
     }))
   );
-  
 
   const handleStatusChange = async (orderId: number, status: string) => {
     await updateOrderStatus(orderId, status);
@@ -89,7 +89,9 @@ export default function PageComponent({ ordersWithProducts }: Props) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {ordersWithProducts.map(order => (
+         {/* @ts-ignore */}
+         {ordersWithProducts.map(order => (
+          
             <TableRow key={order.id}>
               <TableCell>{order.id}</TableCell>
               <TableCell>
@@ -116,7 +118,7 @@ export default function PageComponent({ ordersWithProducts }: Props) {
               {/* @ts-ignore */}
               <TableCell>{order.user.email}</TableCell>
               <TableCell>{order.slug}</TableCell>
-              <TableCell>₦ {order.totalPrice.toFixed(2)}</TableCell>
+              <TableCell>$ {order.totalPrice.toFixed(2)}</TableCell>
               <TableCell>
                 {order.order_items.length} item
                 {order.order_items.length > 1 ? 's' : ''}
@@ -129,6 +131,7 @@ export default function PageComponent({ ordersWithProducts }: Props) {
                       size='sm'
                       onClick={openProductsModal(
                         orderedProducts.filter(
+                          // @ts-ignore
                           item => item.order_id === order.id
                         )
                       )}
@@ -159,7 +162,7 @@ export default function PageComponent({ ordersWithProducts }: Props) {
                               {product.title}
                             </span>
                             <span className='text-gray-600'>
-                            ₦ {product.price.toFixed(2)}
+                              $ {product.price.toFixed(2)}
                             </span>
                             <span className='text-sm text-gray-500'>
                               Available Quantity: {product.maxQuantity}

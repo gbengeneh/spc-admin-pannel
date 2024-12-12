@@ -43,7 +43,6 @@ export const CategoryTableRow = ({
   const handleEditClick = (category: createCategorySchema) => {
     setCurrentCategory({
       name: category.name,
-      // @ts-ignore
       image: new File([], ''),
       intent: 'update',
       slug: category.slug,

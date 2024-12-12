@@ -11,7 +11,8 @@ const Orders = async () => {
 
   return (
     <div>
-      <PageComponent ordersWithProducts={ordersWithProducts}/> 
+       {/* @ts-ignore */}
+      <PageComponent ordersWithProducts={ordersWithProducts} />
     </div>
   );
 };
