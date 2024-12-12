@@ -137,7 +137,7 @@ export default function AuthPage() {
       password: '',  
     },  
   });  
-
+// npx run gen types typescript --project-id irxx> src/supabase/types.ts 
   const [isAuthenticating, setIsAuthenticating] = useState(false);  
   const [authError, setAuthError] = useState<string | null>(null);  
   const router = useRouter();  

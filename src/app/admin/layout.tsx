@@ -5,6 +5,11 @@ import { ADMIN } from "@/constants/constants";
 import { createClient } from "@/supabase/server";  
 import { redirect } from "next/navigation";  
 import { ReactNode } from "react";  
+// import { revalidatePath } from "next/cache";
+
+// export async function revalidate() {  
+//     revalidatePath('/', 'layout');  
+// }  
 
 export default async function AdminLayout({  
     children,  
@@ -23,19 +28,19 @@ export default async function AdminLayout({
 
         // Log error and user data for debugging  
         if (error || !data) {  
-            console.error('Error fetching user data:', error);  
+           
             return redirect('/auth'); // Consider redirecting to auth page on error  
         }  
 
-        console.log('Fetched user data:', data);  
+       
 
         // Check user type and redirect accordingly  
         if (data.type === ADMIN) {  
-            console.log("Admin user encountered, redirecting to homepage.");  
+             
             return redirect('/'); // Redirect admins to the homepage  
         }  
     } else {  
-        console.log("User not authenticated, redirecting to auth.");  
+        
         return redirect('/auth');  
     }  
 
